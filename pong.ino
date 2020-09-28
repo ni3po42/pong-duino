@@ -527,9 +527,6 @@ ISR(TIMER2_OVF_vect) {
     //to help keep them in sync. Start
     //rising edge   
     PORTB = 0x02;
-  } else if (vpulse == 2) {
-    //start falling edge
-    PORTB = 0x00;
   } else if (vpulse == 3) {
     //get inputs player1
     scratch.a = analogRead(A0);
@@ -551,6 +548,8 @@ ISR(TIMER2_OVF_vect) {
     player2.input = scratch.a;
     
   } else if (vpulse == 6) {
+    //start falling edge
+    PORTB = 0x00;
     //calc momentum player 2
     if (player2.moment > 0) {
       player2.moment = player2.moment & 0x03;      
